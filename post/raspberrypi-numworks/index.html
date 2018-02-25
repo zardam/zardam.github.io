@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+<meta charset="utf-8" />
+<meta name="author" content="Zardam" />
+<meta name="description" content="Personal blog." />
+<meta name="keywords" content="blog, tech" />
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.35" />
+
+<link rel="canonical" href="https://zardam.github.io/post/raspberrypi-numworks/">
+<base href="https://zardam.github.io/" />
+<meta property="og:title" content="Adding a Raspberry Pi inside a NumWorks calculator" />
+<meta property="og:description" content="I was having a Raspberry Pi Zero sitting on my desk for a long time, searching for something to do with it. I also wanted to to learm STM32, mainly DMA and interrups. As the caculator is powered by an STM32F412, why not put them together ?
+TL;DR, the result:   The idea was to add an application on the calculator, which will display the output of the Raspberry Pi, and send keystroke from the keyboard to it." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zardam.github.io/post/raspberrypi-numworks/" />
+
+
+
+<meta property="article:published_time" content="2018-02-25T22:00:00&#43;01:00"/>
+
+<meta property="article:modified_time" content="2018-02-25T22:00:00&#43;01:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Adding a Raspberry Pi inside a NumWorks calculator"/>
+<meta name="twitter:description" content="I was having a Raspberry Pi Zero sitting on my desk for a long time, searching for something to do with it. I also wanted to to learm STM32, mainly DMA and interrups. As the caculator is powered by an STM32F412, why not put them together ?
+TL;DR, the result:   The idea was to add an application on the calculator, which will display the output of the Raspberry Pi, and send keystroke from the keyboard to it."/>
+
+
+
+<meta itemprop="name" content="Adding a Raspberry Pi inside a NumWorks calculator">
+<meta itemprop="description" content="I was having a Raspberry Pi Zero sitting on my desk for a long time, searching for something to do with it. I also wanted to to learm STM32, mainly DMA and interrups. As the caculator is powered by an STM32F412, why not put them together ?
+TL;DR, the result:   The idea was to add an application on the calculator, which will display the output of the Raspberry Pi, and send keystroke from the keyboard to it.">
+
+
+<meta itemprop="datePublished" content="2018-02-25T22:00:00&#43;01:00" />
+<meta itemprop="dateModified" content="2018-02-25T22:00:00&#43;01:00" />
+<meta itemprop="wordCount" content="1919">
+
+
+
+<meta itemprop="keywords" content="Raspberry Pi,NumWorks," />
+
+
+<link rel="stylesheet" href="css/layout.css" />
+<style type="text/css">
+body {
+  background-color: #101010;
+  color: #dbdbdb;
+}
+
+a { color: #dbdbdb; }
+
+pre {
+  background: #1D1F21;
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+}
+
+code {
+  background: #1D1F21;
+}
+
+blockquote {
+  background: #1D1F21;
+  border-left: 3px solid #dbdbdb;
+}
+
+table {
+  margin: 1em auto;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #dbdbdb;
+}
+
+th {
+  background: #dbdbdb;
+  color: #101010;
+}
+
+.siteTitle a { color: #aaa8a8; }
+
+.post .content h1{ color: #aaa8a8; }
+.post .content h2{ color: #aaa8a8; }
+.post .content h3{ color: #aaa8a8; }
+.post .content h4{ color: #aaa8a8; }
+.post .content h5{ color: #aaa8a8; }
+.post .content h6{ color: #aaa8a8; }
+.post .content a:hover { color: #aaa8a8; }
+.social-link:hover { color: #aaa8a8; }
+.nav-item-title:hover { color: #aaa8a8; }
+.tag a:hover { color: #aaa8a8; }
+.copyright { color: #404040 }
+.poweredby { color: #404040 }
+.poweredby a { color: #404040; }
+.post-preview .title a{ color: #aaa8a8; }
+.content-item a:hover{
+  text-decoration: underline;
+  color: #aaa8a8;
+}
+.post-list .title { color: #aaa8a8; }
+.rmore { color: #aaa8a8; }
+.terms .term a:hover {
+  text-decoration: underline;
+  color: #aaa8a8;
+}
+
+</style>
+
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+
+<title>
+
+
+     Adding a Raspberry Pi inside a NumWorks calculator 
+
+</title>
+
+</head>
+
+
+<body>
+<div class="main">
+<header>
+
+<div class="header-bar">
+
+  <nav>
+    <div class="siteTitle">
+      <a href="https://zardam.github.io/">Zardam&#39;s home</a>
+    </div> 
+
+    
+    
+    <a class="nav-item" href="https://zardam.github.io/post/"><div class="nav-item-title">Posts</div></a>
+    
+    <a class="nav-item" href="https://zardam.github.io/tags/"><div class="nav-item-title">Tags</div></a>
+    
+
+  </nav>
+</div>
+
+
+</header>
+
+
+<article class="post">
+    <h1 class="title"> Adding a Raspberry Pi inside a NumWorks calculator </h1>
+    <div class="content"> 
+
+<p>I was having a Raspberry Pi Zero sitting on my desk for a long time, searching for something to
+do with it. I also wanted to to learm STM32, mainly DMA and interrups.
+As the caculator is powered by an STM32F412, why not put them together ?</p>
+
+<p>TL;DR, the result:
+
+<div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/Y0QK-OL6eT8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0" title="YouTube Video"></iframe>
+ </div>
+</p>
+
+<p>The idea was to add an application on the calculator, which will display the
+output of the Raspberry Pi, and send keystroke from the keyboard to it.</p>
+
+<p>I have already used <a href="https://github.com/notro/fbtft">fbtft</a> on a Raspberry Pi to drive a display over SPI, and the
+NumWorks has some pads exposing an SPI bus, so this should be easy !</p>
+
+<p><img src="https://zardam.github.io/img/nw_spi.jpg" alt="SPI on NumWorks motherboard" /></p>
+
+<h1 id="displaying-data-from-spi">Displaying data from SPI</h1>
+
+<p>The calculator firmware already does all the hard work (initializing the display), and provides an API
+to control the display. In fact, it is driven by the FSMC (Flexible Static Memory Controller), so
+from the CPU perpective, the display is accessible on two static addresses, one for command, one for data, 16 bits wide.</p>
+
+<p>For this application the only command nedded is the one which sets the area where the pixels will be diplayed. Fortunately,
+it is already implemented in the firmware. Pushing pixel is as simple as writing each sequentially to the data address,
+and they will be displayed from left to right and top to down, like in a standard monitor.</p>
+
+<p>So pixels just needs to be copied from the SPI controller to the display address. Copying pixels like this is an easy
+task for the DMA engine.</p>
+
+<p>The setup of the window is done before each frame, using the unused MISO pin of the SPI bus,
+acting as a software chip select. So when MISO goes low, an interrupt is fired, the software
+chip select on the SPI controller is set (to accept incoming data) and the window is
+configured in the display controller, covering the entiere screen.</p>
+
+<p>Setting the window requires about 3 µs, so the first word coming from the DMA must arrive after this delay.
+Hopefully, on the Raspberry Pi side, there is even enough delay between the chip select and the first byte clocked in (about 10 µs).</p>
+
+<h2 id="setting-up-the-gpio">Setting up the GPIO</h2>
+
+<p>The SPI pins must be configured in alternate mode, in order to be connected internally to the SPI Controller. The MISO pin
+is left as a normal GPIO as it is used to trigger an interrupt.</p>
+
+<pre><code>GPIOA.MODER()-&gt;setMode(5, GPIO::MODER::Mode::AlternateFunction);
+GPIOA.AFR()-&gt;setAlternateFunction(5, GPIO::AFR::AlternateFunction::AF5);
+GPIOA.MODER()-&gt;setMode(6, GPIO::MODER::Mode::Input);
+GPIOA.MODER()-&gt;setMode(7, GPIO::MODER::Mode::AlternateFunction);
+GPIOA.AFR()-&gt;setAlternateFunction(7, GPIO::AFR::AlternateFunction::AF5);
+</code></pre>
+
+<h2 id="setting-up-the-spi-controller">Setting up the SPI Controller</h2>
+
+<p>The configuration of th SPI controller is very simple. It is set in 16 bits mode, RXONLY (as the MISO pin is reused ad chip select),
+and software chip select.</p>
+
+<pre><code>SPI1.CR1()-&gt;setRXONLY(true);
+SPI1.CR1()-&gt;setSSI(true); // Software chip select
+SPI1.CR1()-&gt;setSSM(true); // Software chip select mode
+SPI1.CR1()-&gt;setDFF(true); // 16 bits
+SPI1.CR1()-&gt;setSPE(true); // enable
+</code></pre>
+
+<h2 id="setting-up-the-dma-controller">Setting up the DMA controller</h2>
+
+<p>In order for the DMA to work, it is needed to select the right DMA controller, stream and channel. After that,
+it is needed to configure, the source address (here the SPI1 data register), the destination address (display controller data address),
+source and destination data width (16 bits), the mode (circular), and the number of words to transfer (here 1, because we are in circular mode).
+There is no need to increment source/destination addres it is always the same.</p>
+
+<pre><code>DMAEngine.SPAR(DMAStream)-&gt;set((uint32_t)SPI1.DR()); // Source
+DMAEngine.SM0AR(DMAStream)-&gt;set((uint32_t)Ion::Display::Device::DataAddress); // Destination
+DMAEngine.SNDTR(DMAStream)-&gt;set(1); // Number of items
+DMAEngine.SCR(DMAStream)-&gt;setCHSEL(3); // SPI Channel
+DMAEngine.SCR(DMAStream)-&gt;setDIR(DMA::SCR::Direction::PeripheralToMemory);
+DMAEngine.SCR(DMAStream)-&gt;setMSIZE(DMA::SCR::DataSize::HalfWord);
+DMAEngine.SCR(DMAStream)-&gt;setPSIZE(DMA::SCR::DataSize::HalfWord);
+DMAEngine.SCR(DMAStream)-&gt;setCIRC(true); // Circular
+DMAEngine.SCR(DMAStream)-&gt;setEN(true); // Enable
+</code></pre>
+
+<h2 id="setting-up-the-spi-controller-to-issue-dma-requests">Setting up the SPI controller to issue DMA requests</h2>
+
+<p>This is simply done by enabling the RXDMAEN bit in the SPI control register.</p>
+
+<pre><code>SPI1.CR2()-&gt;setRXDMAEN(true); // enable DMA requests
+</code></pre>
+
+<h2 id="setting-up-an-interrupt-from-the-miso-pins">Setting up an interrupt from the MISO pins</h2>
+
+<p>This was the tricky part. There is several level of abstraction between the pin and the actual interrupt handler.</p>
+
+<p>First, the EXTI (External interrupt/event controller) must be configured to trigger an interrupt line in the NVIC (Nested vectored interrupt controller).</p>
+
+<p>Then, the NVIC line must be enabled, and the according interrupt handler defined. Do not forget to acknoweldge the interrupt in the handler !</p>
+
+<pre><code>SYSCFG.EXTICR2()-&gt;setEXTI(Ion::Rpi::Device::ChipSelectPin, Ion::Rpi::Device::ChipSelectGPIO);
+EXTI.RTSR()-&gt;set(Ion::Rpi::Device::ChipSelectPin, true);
+EXTI.FTSR()-&gt;set(Ion::Rpi::Device::ChipSelectPin, true);
+NVIC.NVIC_ISER0()-&gt;set(23, true);
+</code></pre>
+
+<h2 id="the-interrupt-handler">The interrupt handler</h2>
+
+<p>It does two things :</p>
+
+<ul>
+<li><p>when CS goes low, it activates the software chip select of the SPI controller, and then it triggers the configuration of the window in the display controller.</p></li>
+
+<li><p>when CS goes high, it disactivate the software chip select of the SPI controller. Any data received on the SPI will be discarded.</p></li>
+</ul>
+
+<pre><code>void rpi_isr() {
+  EXTI.PR()-&gt;set(Ion::Rpi::Device::ChipSelectPin, true);
+
+  if(GPIOA.IDR()-&gt;get(6)) {
+    SPI1.CR1()-&gt;setSSI(true);
+  } else {
+    Ion::Display::Device::setDrawingArea(KDRect(0,0,320,240), Ion::Display::Device::Orientation::Landscape);
+    *Ion::Display::Device::CommandAddress = Ion::Display::Device::Command::MemoryWrite;
+    SPI1.CR1()-&gt;setSSI(false);
+  }
+}
+</code></pre>
+
+<h2 id="limitations">Limitations</h2>
+
+<p>There is no error handling if somethig goes wrong, the whole chain can be blocked. This may occur mainly on the SPI
+controller. If the DMA does not read the data fast enough, it will be stuck, waiting for an acknoweldgement of the error.</p>
+
+<h1 id="sending-the-raspberry-pi-display-over-the-spi-bus">Sending the Raspberry Pi display over the SPI bus</h1>
+
+<p>At first, I planned to use <a href="https://github.com/notro/fbtft">fbtft</a> as is, but after diving into the code, it quickly appears
+that it will not be useable, because it expects a direct acces to the display contoller,
+in order to optimize the pushing of pixel (by limiting to area that have changed on the screen).
+I did not want to implement such feature on the calculator, so decided to write my own.</p>
+
+<p>By using concept and code from <a href="https://github.com/notro/fbtft">fbtft</a>, an another driver writen by <a href="http://spritesmods.com/?art=spitft">Sprite_tm</a> and
+also from the <a href="https://github.com/torvalds/linux/blob/ffefb181728f7b97df49ceba18cacfb6c5ee19f2/drivers/video/fbdev/vfb.c">in-kernel vfb driver</a>, I put togehter a &ldquo;quick and dirty&rdquo; linux
+module, which is doing only what I needed: pushing the whole framebuffer over the SPI bus.</p>
+
+<p>The display is 320x240 pixel, 16bpp each, so each frame is 1228800 bits. The maximum SPI frequency of the STM32F412
+is 50 MHz, but the <a href="https://www.raspberrypi.org/documentation/hardware/raspberrypi/spi/README.md">Raspberry Pi cannot generate exactly it</a>. After testing at 62.5 MHz, it seems to work well,
+so, in theory, the maximum framerate is \(\left(\frac{1228800}{62.5 \times 10^6}\right)^{-1} \approx 50\) fps.</p>
+
+<h1 id="implementing-the-keyboard">Implementing the Keyboard</h1>
+
+<p>This is the &ldquo;active&rdquo; part of the application on the calculator (as SPI and DMA are running in the background).
+The calculator simply sends the result of the keyboard scan routine of the firmware (a 64 bit bitfield) to the RPi over the UART.</p>
+
+<p>On the RPi side, a daemon listen on the UART and generates keycodes to the kernel using <a href="https://www.kernel.org/doc/html/v4.12/input/uinput.html">uinput</a>.</p>
+
+<p>The mapping is a bit tedious, and may be much better with a custom keymap on the Linux side.
+I did not go this way, as a external bluetooth keyboard is still useable
+(and I don&rsquo;t know if it is possible to have differnt keymaps on several keyboard).</p>
+
+<p>The calculator keyboard has only 46 keys so in oder to map enough keys, the buttons &ldquo;x,n,t&rdquo; and &ldquo;var&rdquo; are used to switch between
+standard keys and numbers. Not all the keys of a standard keyboard are mapped. This point deserve to be enhanced&hellip;</p>
+
+<p>The mouse simply relies on the <a href="https://wiki.archlinux.org/index.php/Keyboard_configuration_in_Xorg#Enabling_mouse_keys">mouse emulation of X.Org</a>. It is triggered by pushing the power button.</p>
+
+<pre><code>Calc          Keymap 1          Keymap 2
+
+{&quot;left&quot;,      {KEY_KP4,         KEY_KP4}},
+{&quot;up&quot;,        {KEY_KP8,         KEY_KP8}},
+{&quot;down&quot;,      {KEY_KP2,         KEY_KP2}},
+{&quot;right&quot;,     {KEY_KP6,         KEY_KP6}},
+{&quot;ok&quot;,        {BTN_LEFT,        BTN_LEFT}},
+{&quot;back&quot;,      {BTN_RIGHT,       BTN_RIGHT}},
+{&quot;home&quot;},     // not handled here
+{&quot;power&quot;},    // toggle mouse mode
+{NULL},
+{NULL},
+{NULL},
+{NULL},
+{&quot;shift&quot;,     {KEY_LEFTSHIFT,   KEY_LEFTSHIFT}},
+{&quot;alpha&quot;,     {KEY_CAPSLOCK,    KEY_CAPSLOCK}},
+{&quot;xnt&quot;},      // Switch to first keymap
+{&quot;var&quot;},      // Switch to second keymap
+{&quot;toolbox&quot;,   {KEY_RIGHTALT,    KEY_RIGHTALT}},
+{&quot;backspace&quot;, {KEY_BACKSPACE,   KEY_ESC}},
+{&quot;A&quot;,         {KEY_Q,           KEY_F1}},
+{&quot;B&quot;,         {KEY_B,           KEY_F2}},
+{&quot;C&quot;,         {KEY_C,           KEY_F3}},
+{&quot;D&quot;,         {KEY_D,           KEY_F4}},
+{&quot;E ,&quot;,       {KEY_E,           KEY_F5}},
+{&quot;F&quot;,         {KEY_F,           KEY_F6}},
+{&quot;G&quot;,         {KEY_G,           KEY_F7}},
+{&quot;H&quot;,         {KEY_H,           KEY_F8}},
+{&quot;I&quot;,         {KEY_I,           KEY_F9}},
+{&quot;J&quot;,         {KEY_J,           KEY_F10}},
+{&quot;K&quot;,         {KEY_K,           KEY_F11}},
+{&quot;L&quot;,         {KEY_L,           KEY_F12}},
+{&quot;M 7&quot;,       {KEY_SEMICOLON,   KEY_7}},
+{&quot;N 8&quot;,       {KEY_N,           KEY_8}},
+{&quot;O 9&quot;,       {KEY_O,           KEY_9}},
+{&quot;P (&quot;,       {KEY_P,           KEY_5}},
+{&quot;Q )&quot;,       {KEY_A,           KEY_MINUS}},
+{NULL},
+{&quot;R 4&quot;,       {KEY_R,           KEY_4}},
+{&quot;S 5&quot;,       {KEY_S,           KEY_5}},
+{&quot;T 6&quot;,       {KEY_T,           KEY_6}},
+{&quot;U *&quot;,       {KEY_U,           KEY_KPASTERISK}},
+{&quot;V /&quot;,       {KEY_V,           KEY_KPSLASH}},
+{NULL},
+{&quot;W 1&quot;,       {KEY_Z,           KEY_1}},
+{&quot;X 2&quot;,       {KEY_X,           KEY_2}},
+{&quot;Y 3&quot;,       {KEY_Y,           KEY_3}},
+{&quot;Z +&quot;,       {KEY_W,           KEY_KPPLUS}},
+{&quot;space -&quot;,   {KEY_SPACE,       KEY_KPMINUS}},
+{NULL},
+{&quot;? 0&quot;,       {KEY_M,           KEY_0}},
+{&quot;! .&quot;,       {KEY_COMMA,       KEY_COMMA}},
+{&quot;x10^x&quot;,     {KEY_LEFTCTRL,    KEY_LEFTCTRL}},
+{&quot;ans&quot;,       {KEY_LEFTALT,     KEY_LEFTALT}},
+{&quot;exe&quot;,       {KEY_ENTER,       KEY_EQUAL}},
+</code></pre>
+
+<h1 id="the-raspberry-pi">The Raspberry Pi</h1>
+
+<h2 id="powering-up-the-pi">Powering up the Pi</h2>
+
+<p>The initial RPi I used was a Zero (without W). It seemed to work well when powered by 2.8 V (the internal regulated voltage on the calculator),
+and there is provision on the board for an SD card reader, and a transistor to control its power supply.
+I decided to reuse the SD power supply pads to control the power going to the RPi.</p>
+
+<p><img src="https://zardam.github.io/img/nw_sd_pads.jpg" alt="µSD pads" /></p>
+
+<p>But after, I realized that it will be sad to not include WiFi, so I ordered a &ldquo;W&rdquo; version. It turns out that it is not happy with 2.8 V.
+The <a href="http://www.cypress.com/file/298756/download">datasheet of the WiFi chip</a> states that it needs at least 3 V. Desactivating the WiFi chip
+(&ldquo;dtoverlay=pi3-disable-wifi&rdquo; in config.txt) made te RPi working at 2.8 V</p>
+
+<p>So, I decided to power the RPi directly from the battery. As I can no longer use the footprint of the SD card,
+I soldered the transistor and pull down resistor &ldquo;free style&rdquo;, on a non connected pin of the SD cart socket footprint.</p>
+
+<p><img src="https://zardam.github.io/img/nw_pi_power.jpg" alt="RPi Power" /></p>
+
+<p>There is no problem with the voltage level, as all the pins used on the STM32 are 5 V tolerants.</p>
+
+<p>The RPi is powered up upon entering the application, and powered down when the calculator is powered down. So it
+is possible to leave or enter the RPi application as needed.</p>
+
+<h2 id="puting-it-into-the-calculator">Puting it into the calculator</h2>
+
+<p>The RPi fits nicely inside the calculator. There is a row with no components where the connectors of the RPi resides.
+I made it stay in place with double sided adhesive on the HDMI connector, and on the display connector of the calculator.</p>
+
+<p>Unfortunately, this is a little to thick to replace the original cover (with the vertical tabs cut out), but it is possible to leave
+the cover in place :</p>
+
+<p><img src="https://zardam.github.io/img/nw_pi1.jpg" alt="RPi 1" /></p>
+
+<p><img src="https://zardam.github.io/img/nw_pi2.jpg" alt="RPi 2" /></p>
+
+<p><img src="https://zardam.github.io/img/nw_pi3.jpg" alt="RPi 3" /></p>
+
+<h1 id="software-configuration">Software configuration</h1>
+
+<h2 id="raspberry-pi">Raspberry Pi</h2>
+
+<p>GitHub repo : <a href="https://github.com/zardam/spifb">https://github.com/zardam/spifb</a></p>
+
+<p>It is just needed to install the kernel headers, compile, install and auto load the module.</p>
+
+<pre><code>sudo apt-get install raspberrypi-kernel-headers
+make -C /lib/modules/`uname -r`/build M=$PWD
+make -C /lib/modules/`uname -r`/build M=$PWD modules_install
+</code></pre>
+
+<p>/etc/modules</p>
+
+<pre><code>spi-bcm2835
+spifb
+uinput
+</code></pre>
+
+<p>/boot/config.txt</p>
+
+<pre><code>dtparam=spi=on
+
+# Disable HDMI output, saves some power
+hdmi_blanking=2
+
+# Enable the mini uart (/dev/ttyS0 on a PI Zero W)
+enable_uart=1
+
+# Disable LED, saves some power
+dtparam=act_led_trigger=none
+dtparam=act_led_activelow=on
+</code></pre>
+
+<p>Then there is two possibilities :</p>
+
+<ul>
+<li><p>direct use of the framebuffer. This is the simplest method, but the hardware acceleration of the RPi GPU will not be available</p></li>
+
+<li><p>using fbcp to copy the normal framebuffer (fb0) to the SPI framebuffer (spi1). The copy introduce some CPU overhead, but
+hardware acceleration is available, and it is possible to scale the framebuffer, as a resolution of 320x240 is nearly unuseable.</p></li>
+</ul>
+
+<h3 id="direct-use-of-the-framebuffer">Direct use of the framebuffer</h3>
+
+<p>The configuration is the same as using <a href="https://github.com/notro/fbtft">fbtft</a>.</p>
+
+<p>/boot/cmdline.txt</p>
+
+<pre><code>fbcon=map:10
+</code></pre>
+
+<p>X Server</p>
+
+<pre><code>sudo apt-get install xserver-xorg-video-fbdev
+</code></pre>
+
+<p>/usr/share/X11/xorg.conf.d/99-fbdev.conf</p>
+
+<pre><code>Section &quot;Device&quot;  
+  Identifier &quot;myfb&quot;
+  Driver &quot;fbdev&quot;
+  Option &quot;fbdev&quot; &quot;/dev/fb1&quot;
+EndSection
+</code></pre>
+
+<h3 id="fbcp">fbcp</h3>
+
+<p>I used <a href="https://github.com/Oper8or/rpi-fbcp">this fork</a>.</p>
+
+<p>/boot/config.txt</p>
+
+<pre><code>hdmi_force_hotplug=1
+hdmi_cvt=640 480 60 1 0 0 0
+hdmi_group=2
+hdmi_mode=87
+</code></pre>
+
+<p>/etc/systemd/system/fbcp.service</p>
+
+<pre><code>[Unit]
+Description=NumWorks input device
+After=systemd-modules-load.service
+
+[Service]
+Type=simple
+WorkingDirectory=/home/pi/rpi-fbcp/build
+ExecStart=/home/pi/rpi-fbcp/build/fbcp
+User=root
+Group=root
+Restart=on-failure
+</code></pre>
+
+<h3 id="keyboard">Keyboard</h3>
+
+<p>GitHub repo : <a href="https://github.com/zardam/uinput-serial-keyboard">https://github.com/zardam/uinput-serial-keyboard</a></p>
+
+<p>lxkeymap needs to be disabled in the lxde session configuration.</p>
+
+<p>/etc/systemd/system/nwinput.service</p>
+
+<pre><code>[Unit]
+Description=NumWorks input device
+
+[Service]
+Type=simple
+WorkingDirectory=/home/pi
+ExecStart=/home/pi/a.out
+User=root
+Group=root
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+
+<h2 id="calculator">Calculator</h2>
+
+<p>GitHub repo : <a href="https://github.com/zardam/epsilon/tree/rpi">https://github.com/zardam/epsilon/tree/rpi</a></p>
+
+<h1 id="done">Done ;)</h1>
+
+<p>The calculator, browsing its own emulator on the internet:</p>
+
+<p><img src="https://zardam.github.io/img/nw_emul.jpg" alt="NumWorks emulator on the NumWorks" /></p>
+
+<p>There is a lot of room for improving the code, and there is certainly things not done the right way,
+but it was a very interresting project.</p>
+
+<h1 id="useful-resources">Useful resources</h1>
+
+<p><a href="https://www.numworks.com">NumWorks</a></p>
+
+<p><a href="https://www.numworks.com/resources/engineering/hardware/electrical/pcb/">NumWorks PCB layers</a></p>
+
+<p><a href="https://www.numworks.com/assets/schematics-e4afe3bc1487fc5979464369f6f0ee753368f2d0998a78f38bca124cbb272d80.pdf">NumWorks Schematics</a></p>
+
+<p><a href="https://www.numworks.com/assets/datasheets/stm32f412-arm-mcu-datasheet-2c597c86789c2e81e2bfe89a1591fd15dde5cb66792af6b27aadf0bd3f3ffa00.pdf">STM32F412 Datasheet</a></p>
+
+<p><a href="https://www.numworks.com/assets/datasheets/stm32f412-arm-mcu-reference-manual-a03f5b0ae9bc9e4ee6627314302bf307debc10c6ece680af9eb1aeecc0e47493.pdf">STM32F412 Reference manual</a></p>
+
+<p><a href="http://www.st.com/content/ccc/resource/technical/document/programming_manual/6c/3a/cb/e7/e4/ea/44/9b/DM00046982.pdf/files/DM00046982.pdf/jcr:content/translations/en.DM00046982.pdf">STM32F412 Programming manual</a></p>
+ </div>
+    <footer class="post-footer">
+
+  <div class="post-footer-data">
+    
+<div class="tags">
+    
+      <div class="tag">
+        <a href="https://zardam.github.io/tags/raspberry-pi">#Raspberry Pi</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://zardam.github.io/tags/numworks">#NumWorks</a>
+      </div>
+    
+</div>
+
+    <div class="date"> Feb 25, 2018 </div>
+  </div>
+
+</footer>
+
+
+  
+
+
+</article>
+
+  <footer>
+
+  <div class="social-links-footer">
+
+  
+
+  
+  <a href="https://github.com/zardam" target="_blank"><div class="social-link">GitHub</div></a>
+  
+
+  
+
+  
+  <a href="https://twitter.com/_zardam_" target="_blank"><div class="social-link">Twitter</div></a>
+  
+
+  
+
+  <div class="social-link">
+  <a href="https://zardam.github.io/index.xml" target="_blank">RSS</a>
+  </div>
+
+</div>
+
+
+  <div class="copyright"> Copyright (c) 2018, all rights reserved. </div>
+
+  <div class="poweredby">
+    Powered by <a href="https://gohugo.io/">Hugo</a>.
+  </div>
+
+  </footer>
+
+</div> 
+
+</body>
+</html>
+

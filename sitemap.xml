@@ -3,17 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://zardam.github.io/post/raspberrypi-numworks/</loc>
+    <lastmod>2018-02-25T22:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zardam.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://zardam.github.io/tags/numworks/</loc>
+    <lastmod>2018-02-25T22:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zardam.github.io/post/</loc>
+    <lastmod>2018-02-25T22:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zardam.github.io/tags/raspberry-pi/</loc>
+    <lastmod>2018-02-25T22:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://zardam.github.io/tags/</loc>
+    <lastmod>2018-02-25T22:00:00+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zardam.github.io/</loc>
+    <lastmod>2018-02-25T22:00:00+01:00</lastmod>
     <priority>0</priority>
   </url>
   
