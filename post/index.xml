@@ -7,10 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2018, all rights reserved.</copyright>
-    <lastBuildDate>Sun, 25 Feb 2018 22:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Wed, 07 Mar 2018 21:18:49 +0100</lastBuildDate>
     
 	<atom:link href="https://zardam.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>OpenOCD on the Raspberry Pi inside a NumWorks calculator</title>
+      <link>https://zardam.github.io/post/raspberrypi-numworks-openocd/</link>
+      <pubDate>Wed, 07 Mar 2018 21:18:49 +0100</pubDate>
+      
+      <guid>https://zardam.github.io/post/raspberrypi-numworks-openocd/</guid>
+      <description>In my previous post I added a Raspberry Pi Zero inside the calculator. Why not use also it to program/debug the calculator firmware ?
+What I have done is basically to follow this adafruit tutorial.
+I soldered only SWDIO to Raspberry Pi #24 and SWCLK to Raspberry Pi #25. This seems to be enough, and the reset button of the calculator is not far away if needed.
+Using the following OpenOCD script, it is now possible to debug or program the calculator over the air !</description>
+    </item>
     
     <item>
       <title>Adding a Raspberry Pi inside a NumWorks calculator</title>

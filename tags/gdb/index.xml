@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Raspberry Pi on Zardam&#39;s home</title>
-    <link>https://zardam.github.io/tags/raspberry-pi/</link>
-    <description>Recent content in Raspberry Pi on Zardam&#39;s home</description>
+    <title>Gdb on Zardam&#39;s home</title>
+    <link>https://zardam.github.io/tags/gdb/</link>
+    <description>Recent content in Gdb on Zardam&#39;s home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2018, all rights reserved.</copyright>
     <lastBuildDate>Wed, 07 Mar 2018 21:18:49 +0100</lastBuildDate>
     
-	<atom:link href="https://zardam.github.io/tags/raspberry-pi/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zardam.github.io/tags/gdb/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -22,16 +22,6 @@
 What I have done is basically to follow this adafruit tutorial.
 I soldered only SWDIO to Raspberry Pi #24 and SWCLK to Raspberry Pi #25. This seems to be enough, and the reset button of the calculator is not far away if needed.
 Using the following OpenOCD script, it is now possible to debug or program the calculator over the air !</description>
-    </item>
-    
-    <item>
-      <title>Adding a Raspberry Pi inside a NumWorks calculator</title>
-      <link>https://zardam.github.io/post/raspberrypi-numworks/</link>
-      <pubDate>Sun, 25 Feb 2018 22:00:00 +0100</pubDate>
-      
-      <guid>https://zardam.github.io/post/raspberrypi-numworks/</guid>
-      <description>I was having a Raspberry Pi Zero sitting on my desk for a long time, searching for something to do with it. I also wanted to to learm STM32, mainly DMA and interrups. As the caculator is powered by an STM32F412, why not put them together ?
-TL;DR, the result:   The idea was to add an application on the calculator, which will display the output of the Raspberry Pi, and send keystroke from the keyboard to it.</description>
     </item>
     
   </channel>
