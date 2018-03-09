@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2018, all rights reserved.</copyright>
-    <lastBuildDate>Wed, 07 Mar 2018 21:18:49 +0100</lastBuildDate>
+    <lastBuildDate>Fri, 09 Mar 2018 00:42:51 +0100</lastBuildDate>
     
 	<atom:link href="https://zardam.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>NumWorks UART Over USB port</title>
+      <link>https://zardam.github.io/post/numworks-uart-over-usb/</link>
+      <pubDate>Fri, 09 Mar 2018 00:42:51 +0100</pubDate>
+      
+      <guid>https://zardam.github.io/post/numworks-uart-over-usb/</guid>
+      <description>Some people are complaining about the lack of connectivity to the outside world from the calculator, but in fact it is pretty simple to change that.
+According to the calculator schematics, the USB port of the calculator is wired to PA11 and PA12 of the STM32F412. We have this in the datasheet about these pins :
+So, it is possible to map an UART on the USB port D+ and D-.</description>
+    </item>
     
     <item>
       <title>OpenOCD on the Raspberry Pi inside a NumWorks calculator</title>
