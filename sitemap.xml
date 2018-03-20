@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://zardam.github.io/post/numworks-uart-rover/</loc>
+    <lastmod>2018-03-20T23:10:51+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zardam.github.io/post/numworks-uart-over-usb/</loc>
     <lastmod>2018-03-09T00:42:51+01:00</lastmod>
   </url>
@@ -30,13 +35,13 @@
   
   <url>
     <loc>https://zardam.github.io/tags/micropython/</loc>
-    <lastmod>2018-03-09T00:42:51+01:00</lastmod>
+    <lastmod>2018-03-20T23:10:51+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zardam.github.io/tags/numworks/</loc>
-    <lastmod>2018-03-09T00:42:51+01:00</lastmod>
+    <lastmod>2018-03-20T23:10:51+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -48,7 +53,13 @@
   
   <url>
     <loc>https://zardam.github.io/post/</loc>
-    <lastmod>2018-03-09T00:42:51+01:00</lastmod>
+    <lastmod>2018-03-20T23:10:51+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zardam.github.io/tags/pyboard/</loc>
+    <lastmod>2018-03-20T23:10:51+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -66,13 +77,13 @@
   
   <url>
     <loc>https://zardam.github.io/tags/uart/</loc>
-    <lastmod>2018-03-09T00:42:51+01:00</lastmod>
+    <lastmod>2018-03-20T23:10:51+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zardam.github.io/</loc>
-    <lastmod>2018-03-09T00:42:51+01:00</lastmod>
+    <lastmod>2018-03-20T23:10:51+01:00</lastmod>
     <priority>0</priority>
   </url>
   
