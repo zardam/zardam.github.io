@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2018, all rights reserved.</copyright>
-    <lastBuildDate>Tue, 20 Mar 2018 23:10:51 +0100</lastBuildDate>
+    <lastBuildDate>Thu, 22 Mar 2018 22:16:34 +0100</lastBuildDate>
     
 	<atom:link href="https://zardam.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>RF plugs clean integration</title>
+      <link>https://zardam.github.io/post/rf-plug-integrated/</link>
+      <pubDate>Thu, 22 Mar 2018 22:16:34 +0100</pubDate>
+      
+      <guid>https://zardam.github.io/post/rf-plug-integrated/</guid>
+      <description>Introduction Since I&amp;rsquo;m lazy, I wanted to control remotely two floor lamps in my house. I bought some cheap RF outlets, but I did not want to have another ugly looking and always lost remote control in the house. So a clean solution was needed !
+This is the kind of RF plug I used :
+                  The idea was to add a standard light switch in an existing box.</description>
+    </item>
     
     <item>
       <title>NumWorks controlling a pyboard rover</title>

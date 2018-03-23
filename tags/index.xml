@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2018, all rights reserved.</copyright>
-    <lastBuildDate>Wed, 07 Mar 2018 21:18:49 +0100</lastBuildDate>
+    <lastBuildDate>Thu, 22 Mar 2018 22:16:34 +0100</lastBuildDate>
     
 	<atom:link href="https://zardam.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Arduino</title>
+      <link>https://zardam.github.io/tags/arduino/</link>
+      <pubDate>Thu, 22 Mar 2018 22:16:34 +0100</pubDate>
+      
+      <guid>https://zardam.github.io/tags/arduino/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Gdb</title>
@@ -18,6 +27,15 @@
       <pubDate>Wed, 07 Mar 2018 21:18:49 +0100</pubDate>
       
       <guid>https://zardam.github.io/tags/gdb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Home Automation</title>
+      <link>https://zardam.github.io/tags/home-automation/</link>
+      <pubDate>Thu, 22 Mar 2018 22:16:34 +0100</pubDate>
+      
+      <guid>https://zardam.github.io/tags/home-automation/</guid>
       <description></description>
     </item>
     
