@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2018, all rights reserved.</copyright>
-    <lastBuildDate>Thu, 22 Mar 2018 22:16:34 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 24 Mar 2018 22:28:29 +0100</lastBuildDate>
     
 	<atom:link href="https://zardam.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Logitech Harmony 200 Repair</title>
+      <link>https://zardam.github.io/post/harmony200-repair/</link>
+      <pubDate>Sat, 24 Mar 2018 22:28:29 +0100</pubDate>
+      
+      <guid>https://zardam.github.io/post/harmony200-repair/</guid>
+      <description>For some time, my trusted all in one remote control was having problems. Some buttons were not working very well : the &amp;ldquo;Watch TV&amp;rdquo;, &amp;ldquo;TV&amp;rdquo; and &amp;ldquo;left&amp;rdquo;.
+The &amp;ldquo;Watch TV&amp;rdquo; required very high pressure, and the two other where not working about half of the time, independently of the pressure on the button.
+For the &amp;ldquo;Watch TV&amp;rdquo;, after testing the contact directly on the pads of the remote, it was clear that the problem came from the black conductive pad on the button.</description>
+    </item>
     
     <item>
       <title>RF plugs clean integration</title>

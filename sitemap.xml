@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://zardam.github.io/post/harmony200-repair/</loc>
+    <lastmod>2018-03-24T22:28:29+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zardam.github.io/post/rf-plug-integrated/</loc>
     <lastmod>2018-03-22T22:16:34+01:00</lastmod>
   </url>
@@ -51,6 +56,12 @@
   </url>
   
   <url>
+    <loc>https://zardam.github.io/tags/logitech-harmony/</loc>
+    <lastmod>2018-03-24T22:28:29+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://zardam.github.io/tags/micropython/</loc>
     <lastmod>2018-03-20T23:10:51+01:00</lastmod>
     <priority>0</priority>
@@ -70,7 +81,7 @@
   
   <url>
     <loc>https://zardam.github.io/post/</loc>
-    <lastmod>2018-03-22T22:16:34+01:00</lastmod>
+    <lastmod>2018-03-24T22:28:29+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -83,6 +94,12 @@
   <url>
     <loc>https://zardam.github.io/tags/raspberry-pi/</loc>
     <lastmod>2018-03-07T21:18:49+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zardam.github.io/tags/repair/</loc>
+    <lastmod>2018-03-24T22:28:29+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -100,7 +117,7 @@
   
   <url>
     <loc>https://zardam.github.io/</loc>
-    <lastmod>2018-03-22T22:16:34+01:00</lastmod>
+    <lastmod>2018-03-24T22:28:29+01:00</lastmod>
     <priority>0</priority>
   </url>
   
