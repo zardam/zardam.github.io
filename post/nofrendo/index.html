@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+<meta charset="utf-8" />
+<meta name="author" content="Zardam" />
+<meta name="description" content="Personal blog." />
+<meta name="keywords" content="blog, tech" />
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.46" />
+
+<link rel="canonical" href="https://zardam.github.io/post/nofrendo/">
+<base href="https://zardam.github.io/" />
+<meta property="og:title" content="NES emulator on NumWorks calculator" />
+<meta property="og:description" content="Demo   Background This is a port of nofrendo NES Emulator. Some adaptations were borrowed from esp32-nesemu, and some ugly additional work was done to make it run on the calculator.
+The port is very basic, there is no sound (it should be possible to abuse the USB port for this), and the state is not saved (even the SRAM of the cartridge, if any). It supports only one ROM (but the available flash on the calculator is very limited)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zardam.github.io/post/nofrendo/" />
+
+
+
+<meta property="article:published_time" content="2018-08-17T23:37:56&#43;02:00"/>
+
+<meta property="article:modified_time" content="2018-08-17T23:37:56&#43;02:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="NES emulator on NumWorks calculator"/>
+<meta name="twitter:description" content="Demo   Background This is a port of nofrendo NES Emulator. Some adaptations were borrowed from esp32-nesemu, and some ugly additional work was done to make it run on the calculator.
+The port is very basic, there is no sound (it should be possible to abuse the USB port for this), and the state is not saved (even the SRAM of the cartridge, if any). It supports only one ROM (but the available flash on the calculator is very limited)."/>
+
+
+
+<meta itemprop="name" content="NES emulator on NumWorks calculator">
+<meta itemprop="description" content="Demo   Background This is a port of nofrendo NES Emulator. Some adaptations were borrowed from esp32-nesemu, and some ugly additional work was done to make it run on the calculator.
+The port is very basic, there is no sound (it should be possible to abuse the USB port for this), and the state is not saved (even the SRAM of the cartridge, if any). It supports only one ROM (but the available flash on the calculator is very limited).">
+
+
+<meta itemprop="datePublished" content="2018-08-17T23:37:56&#43;02:00" />
+<meta itemprop="dateModified" content="2018-08-17T23:37:56&#43;02:00" />
+<meta itemprop="wordCount" content="194">
+
+
+
+<meta itemprop="keywords" content="NumWorks,Retro,NES," />
+
+
+<link rel="stylesheet" href="css/layout.css" />
+<style type="text/css">
+body {
+  background-color: #101010;
+  color: #dbdbdb;
+}
+
+a { color: #dbdbdb; }
+
+pre {
+  background: #272822;
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+}
+
+code {
+  background: #272822;
+}
+
+blockquote {
+  background: #272822;
+  border-left: 3px solid #dbdbdb;
+}
+
+table {
+  margin: 1em auto;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #dbdbdb;
+}
+
+th {
+  background: #dbdbdb;
+  color: #101010;
+}
+
+.siteTitle a { color: #aaa8a8; }
+
+.post .content h1{ color: #aaa8a8; }
+.post .content h2{ color: #aaa8a8; }
+.post .content h3{ color: #aaa8a8; }
+.post .content h4{ color: #aaa8a8; }
+.post .content h5{ color: #aaa8a8; }
+.post .content h6{ color: #aaa8a8; }
+.post .content a:hover { color: #aaa8a8; }
+.social-link:hover { color: #aaa8a8; }
+.nav-item-title:hover { color: #aaa8a8; }
+.tag a:hover { color: #aaa8a8; }
+.copyright { color: #404040 }
+.poweredby { color: #404040 }
+.poweredby a { color: #404040; }
+.post-preview .title a{ color: #aaa8a8; }
+.content-item a:hover{
+  text-decoration: underline;
+  color: #aaa8a8;
+}
+.post-list .title { color: #aaa8a8; }
+.rmore { color: #aaa8a8; }
+.terms .term a:hover {
+  text-decoration: underline;
+  color: #aaa8a8;
+}
+
+</style>
+
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+
+<title>
+
+
+     NES emulator on NumWorks calculator 
+
+</title>
+
+</head>
+
+
+<body>
+<div class="main">
+<header>
+
+<div class="header-bar">
+
+  <nav>
+    <div class="siteTitle">
+      <a href="https://zardam.github.io/">Zardam&#39;s home</a>
+    </div> 
+
+    
+    
+    <a class="nav-item" href="https://zardam.github.io/post/"><div class="nav-item-title">Posts</div></a>
+    
+    <a class="nav-item" href="https://zardam.github.io/tags/"><div class="nav-item-title">Tags</div></a>
+    
+
+  </nav>
+</div>
+
+
+</header>
+
+
+<article class="post">
+    <h1 class="title"> NES emulator on NumWorks calculator </h1>
+    <div class="content"> 
+
+<h1 id="demo">Demo</h1>
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/BDVeut56AJU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<h1 id="background">Background</h1>
+
+<p>This is a port of <a href="http://www.baisoku.org/">nofrendo</a> NES Emulator. Some adaptations were borrowed from <a href="https://github.com/espressif/esp32-nesemu">esp32-nesemu</a>, and some ugly additional work was done to make it run on the calculator.</p>
+
+<p>The port is very basic, there is no sound (it should be possible to abuse the USB port for this), and the state is not saved (even the SRAM of the cartridge, if any). It supports only one ROM (but the available flash on the calculator is very limited).</p>
+
+<h1 id="building-flashing-it">Building &amp; flashing it</h1>
+
+<p>If you have the <a href="https://www.numworks.com/resources/engineering/software/sdk/">NumWorks SDK</a> installed, just do:</p>
+
+<pre><code>$ git clone -b nofrendo git@github.com:zardam/epsilon.git
+$ cd epsilon
+$ make PLATFORM=device EPSILON_SOFTWARE_UPDATE_PROMPT=0 EPSILON_APPS=&quot;calculation graph code statistics probability solver sequence regression settings nes&quot; clean epsilon_flash
+</code></pre>
+
+<p>Then, connect the calculator to the computer to flash it. If the resulting firmware is too big, you can remove some apps in the build by removing them from the list EPSILON_APPS.</p>
+
+<p>To change the ROM, just add the parameter NES_ROM pointing to the ROM file. By default, the 2048 ROM from <a href="https://bitbucket.org/tsone/neskit/">neskit</a> is used.</p>
+
+<h1 id="controls">Controls</h1>
+
+<table>
+<thead>
+<tr>
+<th>Calculator</th>
+<th>NES</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Up</td>
+<td>Up</td>
+</tr>
+
+<tr>
+<td>Down</td>
+<td>Down</td>
+</tr>
+
+<tr>
+<td>Left</td>
+<td>Left</td>
+</tr>
+
+<tr>
+<td>Right</td>
+<td>Right</td>
+</tr>
+
+<tr>
+<td>Back</td>
+<td>A</td>
+</tr>
+
+<tr>
+<td>OK</td>
+<td>B</td>
+</tr>
+
+<tr>
+<td>Up</td>
+<td>Start</td>
+</tr>
+
+<tr>
+<td>OnOff</td>
+<td>Select</td>
+</tr>
+
+<tr>
+<td>any other</td>
+<td>Exit</td>
+</tr>
+</tbody>
+</table>
+ </div>
+    <footer class="post-footer">
+
+  <div class="post-footer-data">
+    
+<div class="tags">
+    
+      <div class="tag">
+        <a href="https://zardam.github.io/tags/numworks">#NumWorks</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://zardam.github.io/tags/retro">#Retro</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://zardam.github.io/tags/nes">#NES</a>
+      </div>
+    
+</div>
+
+    <div class="date"> Aug 17, 2018 </div>
+  </div>
+
+</footer>
+
+
+  <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zardam" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</article>
+
+  <footer>
+
+  <div class="social-links-footer">
+
+  
+
+  
+  <a href="https://github.com/zardam" target="_blank"><div class="social-link">GitHub</div></a>
+  
+
+  
+
+  
+  <a href="https://twitter.com/_zardam_" target="_blank"><div class="social-link">Twitter</div></a>
+  
+
+  
+
+  <div class="social-link">
+  <a href="https://zardam.github.io/index.xml" target="_blank">RSS</a>
+  </div>
+
+</div>
+
+
+  <div class="copyright"> Copyright (c) 2018, all rights reserved. </div>
+
+  <div class="poweredby">
+    Powered by <a href="https://gohugo.io/">Hugo</a>.
+  </div>
+
+  </footer>
+
+</div> 
+
+</body>
+</html>
+

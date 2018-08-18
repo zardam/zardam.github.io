@@ -7,7 +7,7 @@
 <meta name="description" content="Personal blog." />
 <meta name="keywords" content="blog, tech" />
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.37.1" />
+<meta name="generator" content="Hugo 0.46" />
 
 <link rel="canonical" href="https://zardam.github.io/post/rf-plug-integrated/">
 <base href="https://zardam.github.io/" />
@@ -295,9 +295,9 @@ ISR(PCINT0_vect) {
     <span style="color:#66d9ef">else</span>
       <span style="color:#a6e22e">delayMicroseconds</span>(<span style="color:#ae81ff">10000</span>);
     <span style="color:#66d9ef">if</span>(digitalRead(buttonPin))
-      mySwitch.send(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;000101010001010101010101&#34;</span>); <span style="color:#75715e">// ON
+      mySwitch.send(<span style="color:#e6db74">&#34;000101010001010101010101&#34;</span>); <span style="color:#75715e">// ON
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">else</span>
-      mySwitch.send(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;000101010001010101010100&#34;</span>); <span style="color:#75715e">// OFF
+      mySwitch.send(<span style="color:#e6db74">&#34;000101010001010101010100&#34;</span>); <span style="color:#75715e">// OFF
 </span><span style="color:#75715e"></span>    state <span style="color:#f92672">=</span> newState;
   }
 }
