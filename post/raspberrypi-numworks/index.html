@@ -31,7 +31,7 @@ TL;DR, the result:   The idea was to add an application on the calculator, which
 
 <meta itemprop="datePublished" content="2018-02-25T22:00:00&#43;01:00" />
 <meta itemprop="dateModified" content="2018-02-25T22:00:00&#43;01:00" />
-<meta itemprop="wordCount" content="2026">
+<meta itemprop="wordCount" content="2030">
 
 
 
@@ -417,7 +417,8 @@ the cover in place :</p>
 git clone https://github.com/zardam/spifb.git
 cd spifb
 make -C /lib/modules/$(uname -r)/build M=$PWD
-make -C /lib/modules/$(uname -r)/build M=$PWD modules_install
+sudo make -C /lib/modules/$(uname -r)/build M=$PWD modules_install
+sudo depmod -a
 </code></pre>
 
 <p>/etc/modules</p>
