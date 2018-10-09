@@ -31,7 +31,7 @@ TL;DR, the result:   The idea was to add an application on the calculator, which
 
 <meta itemprop="datePublished" content="2018-02-25T22:00:00&#43;01:00" />
 <meta itemprop="dateModified" content="2018-02-25T22:00:00&#43;01:00" />
-<meta itemprop="wordCount" content="2024">
+<meta itemprop="wordCount" content="2026">
 
 
 
@@ -508,6 +508,9 @@ ExecStart=/home/pi/rpi-fbcp/build/fbcp
 User=root
 Group=root
 Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
 </code></pre>
 
 <p>Then, enable and start the service:</p>
