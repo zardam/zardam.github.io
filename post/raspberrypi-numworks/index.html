@@ -31,7 +31,7 @@ TL;DR, the result:   The idea was to add an application on the calculator, which
 
 <meta itemprop="datePublished" content="2018-02-25T22:00:00&#43;01:00" />
 <meta itemprop="dateModified" content="2018-02-25T22:00:00&#43;01:00" />
-<meta itemprop="wordCount" content="2030">
+<meta itemprop="wordCount" content="2041">
 
 
 
@@ -531,6 +531,11 @@ gcc uinput.c -o uinput
 </code></pre>
 
 <p>lxkeymap needs to be disabled in the lxde session configuration (just use the GUI tool).</p>
+
+<p>The linux serial console must be disabled. In /boot/cmdline.txt, remove:</p>
+
+<pre><code>console=serial0,115200
+</code></pre>
 
 <p>/etc/systemd/system/nwinput.service</p>
 
