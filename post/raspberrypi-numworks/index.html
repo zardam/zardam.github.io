@@ -31,7 +31,7 @@ TL;DR, the result:   The idea was to add an application on the calculator, which
 
 <meta itemprop="datePublished" content="2018-02-25T22:00:00&#43;01:00" />
 <meta itemprop="dateModified" content="2018-02-25T22:00:00&#43;01:00" />
-<meta itemprop="wordCount" content="2041">
+<meta itemprop="wordCount" content="2067">
 
 
 
@@ -382,9 +382,11 @@ The <a href="http://www.cypress.com/file/298756/download">datasheet of the WiFi 
 (&ldquo;dtoverlay=pi3-disable-wifi&rdquo; in config.txt) made te RPi working at 2.8 V</p>
 
 <p>So, I decided to power the RPi directly from the battery. As I can no longer use the footprint of the SD card,
-I soldered the transistor and pull down resistor &ldquo;free style&rdquo;, on a non connected pin of the SD cart socket footprint.</p>
+I soldered the transistor and pull up resistor &ldquo;free style&rdquo;, on a non connected pin of the SD cart socket footprint.</p>
 
-<p><img src="https://zardam.github.io/img/nw_pi_power.jpg" alt="RPi Power" /></p>
+<p>I used an NTR1P02LT1 and a 10 k&#8486; resistor, but any P channel &ldquo;logic level&rdquo; MOSFET that can handle at least 100 mA should be good.</p>
+
+<p><img src="https://zardam.github.io/img/nw_pi_power2.jpg" alt="RPi Power" /></p>
 
 <p>There is no problem with the voltage level, as all the pins used on the STM32 are 5 V tolerant.</p>
 
