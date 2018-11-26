@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2018, all rights reserved.</copyright>
-    <lastBuildDate>Fri, 17 Aug 2018 23:37:56 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 25 Nov 2018 22:30:01 +0100</lastBuildDate>
     
 	<atom:link href="https://zardam.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>NumWorks additional flash &amp; giac</title>
+      <link>https://zardam.github.io/post/numworks-giac/</link>
+      <pubDate>Sun, 25 Nov 2018 22:30:01 +0100</pubDate>
+      
+      <guid>https://zardam.github.io/post/numworks-giac/</guid>
+      <description>Disclaim This article is not up to date. It is just a place to document what I have done some time ago regarding this contest on TI-Planet : https://tiplanet.org/forum/viewtopic.php?t=20557
+Introduction First, a compatible SPI flash chip must be soldered inside the calculator on the U7 pad. I used an AT25SF641 kindly donated by TI-Planet, as it was the part referenced on the official schematics.
+At the time, there was no implementation of USB inside the official firmware so I choose to write a small loader compatible with the flashrom serprog protocol.</description>
+    </item>
     
     <item>
       <title>NES emulator on NumWorks calculator</title>

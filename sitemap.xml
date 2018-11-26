@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://zardam.github.io/post/numworks-giac/</loc>
+    <lastmod>2018-11-25T22:30:01+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zardam.github.io/post/nofrendo/</loc>
     <lastmod>2018-08-17T23:37:56+02:00</lastmod>
   </url>
@@ -80,7 +85,7 @@
   
   <url>
     <loc>https://zardam.github.io/tags/numworks/</loc>
-    <lastmod>2018-08-17T23:37:56+02:00</lastmod>
+    <lastmod>2018-11-25T22:30:01+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -92,7 +97,7 @@
   
   <url>
     <loc>https://zardam.github.io/post/</loc>
-    <lastmod>2018-08-17T23:37:56+02:00</lastmod>
+    <lastmod>2018-11-25T22:30:01+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -134,7 +139,7 @@
   
   <url>
     <loc>https://zardam.github.io/</loc>
-    <lastmod>2018-08-17T23:37:56+02:00</lastmod>
+    <lastmod>2018-11-25T22:30:01+01:00</lastmod>
     <priority>0</priority>
   </url>
   

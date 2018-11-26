@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+<meta charset="utf-8" />
+<meta name="author" content="Zardam" />
+<meta name="description" content="Personal blog." />
+<meta name="keywords" content="blog, tech" />
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.47.1" />
+
+<link rel="canonical" href="https://zardam.github.io/post/numworks-giac/">
+<base href="https://zardam.github.io/" />
+<meta property="og:title" content="NumWorks additional flash &amp; giac" />
+<meta property="og:description" content="Disclaim This article is not up to date. It is just a place to document what I have done some time ago regarding this contest on TI-Planet : https://tiplanet.org/forum/viewtopic.php?t=20557
+Introduction First, a compatible SPI flash chip must be soldered inside the calculator on the U7 pad. I used an AT25SF641 kindly donated by TI-Planet, as it was the part referenced on the official schematics.
+At the time, there was no implementation of USB inside the official firmware so I choose to write a small loader compatible with the flashrom serprog protocol." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zardam.github.io/post/numworks-giac/" /><meta property="article:published_time" content="2018-11-25T22:30:01&#43;01:00"/>
+<meta property="article:modified_time" content="2018-11-25T22:30:01&#43;01:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="NumWorks additional flash &amp; giac"/>
+<meta name="twitter:description" content="Disclaim This article is not up to date. It is just a place to document what I have done some time ago regarding this contest on TI-Planet : https://tiplanet.org/forum/viewtopic.php?t=20557
+Introduction First, a compatible SPI flash chip must be soldered inside the calculator on the U7 pad. I used an AT25SF641 kindly donated by TI-Planet, as it was the part referenced on the official schematics.
+At the time, there was no implementation of USB inside the official firmware so I choose to write a small loader compatible with the flashrom serprog protocol."/>
+
+
+
+<meta itemprop="name" content="NumWorks additional flash &amp; giac">
+<meta itemprop="description" content="Disclaim This article is not up to date. It is just a place to document what I have done some time ago regarding this contest on TI-Planet : https://tiplanet.org/forum/viewtopic.php?t=20557
+Introduction First, a compatible SPI flash chip must be soldered inside the calculator on the U7 pad. I used an AT25SF641 kindly donated by TI-Planet, as it was the part referenced on the official schematics.
+At the time, there was no implementation of USB inside the official firmware so I choose to write a small loader compatible with the flashrom serprog protocol.">
+
+
+<meta itemprop="datePublished" content="2018-11-25T22:30:01&#43;01:00" />
+<meta itemprop="dateModified" content="2018-11-25T22:30:01&#43;01:00" />
+<meta itemprop="wordCount" content="553">
+
+
+
+<meta itemprop="keywords" content="NumWorks," />
+
+
+<link rel="stylesheet" href="css/layout.css" />
+<style type="text/css">
+body {
+  background-color: #101010;
+  color: #dbdbdb;
+}
+
+a { color: #dbdbdb; }
+
+pre {
+  background: #272822;
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+}
+
+code {
+  background: #272822;
+}
+
+blockquote {
+  background: #272822;
+  border-left: 3px solid #dbdbdb;
+}
+
+table {
+  margin: 1em auto;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #dbdbdb;
+}
+
+th {
+  background: #dbdbdb;
+  color: #101010;
+}
+
+.siteTitle a { color: #aaa8a8; }
+
+.post .content h1{ color: #aaa8a8; }
+.post .content h2{ color: #aaa8a8; }
+.post .content h3{ color: #aaa8a8; }
+.post .content h4{ color: #aaa8a8; }
+.post .content h5{ color: #aaa8a8; }
+.post .content h6{ color: #aaa8a8; }
+.post .content a:hover { color: #aaa8a8; }
+.social-link:hover { color: #aaa8a8; }
+.nav-item-title:hover { color: #aaa8a8; }
+.tag a:hover { color: #aaa8a8; }
+.copyright { color: #404040 }
+.poweredby { color: #404040 }
+.poweredby a { color: #404040; }
+.post-preview .title a{ color: #aaa8a8; }
+.content-item a:hover{
+  text-decoration: underline;
+  color: #aaa8a8;
+}
+.post-list .title { color: #aaa8a8; }
+.rmore { color: #aaa8a8; }
+.terms .term a:hover {
+  text-decoration: underline;
+  color: #aaa8a8;
+}
+
+</style>
+
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+
+<title>
+
+
+     NumWorks additional flash &amp; giac 
+
+</title>
+
+</head>
+
+
+<body>
+<div class="main">
+<header>
+
+<div class="header-bar">
+
+  <nav>
+    <div class="siteTitle">
+      <a href="https://zardam.github.io/">Zardam&#39;s home</a>
+    </div> 
+
+    
+    
+    <a class="nav-item" href="https://zardam.github.io/post/"><div class="nav-item-title">Posts</div></a>
+    
+    <a class="nav-item" href="https://zardam.github.io/tags/"><div class="nav-item-title">Tags</div></a>
+    
+
+  </nav>
+</div>
+
+
+</header>
+
+
+<article class="post">
+    <h1 class="title"> NumWorks additional flash &amp; giac </h1>
+    <div class="content"> 
+
+<h1 id="disclaim">Disclaim</h1>
+
+<p>This article is not up to date. It is just a place to document what I have done some time ago regarding this contest on TI-Planet : <a href="https://tiplanet.org/forum/viewtopic.php?t=20557">https://tiplanet.org/forum/viewtopic.php?t=20557</a></p>
+
+<h1 id="introduction">Introduction</h1>
+
+<p>First, a compatible SPI flash chip must be soldered inside the calculator on the U7 pad. I used an <a href="https://www.adestotech.com/wp-content/uploads/AT25SF641_111.pdf">AT25SF641</a> kindly donated by TI-Planet, as it was the part referenced on the <a href="https://www.numworks.com/shared/binary/schematics-23477ea8.pdf">official schematics</a>.</p>
+
+<p>At the time, there was no implementation of USB inside the official firmware so I choose to write a <a href="https://github.com/zardam/qspi_loader">small loader</a> compatible with the <a href="https://www.flashrom.org/Flashrom">flashrom serprog</a> protocol. Doing this, I only had to care about low level stuff (sending raw bytes to the flash), and all the flashing protocol (erasing, writing, &hellip;) is handled by flashrom.</p>
+
+<p>Then, <a href="https://github.com/zardam/epsilon/tree/giac">some modifications</a> were needed in the firmware to initialise and use the flash, but also to split the code between the internal and the external flash (linker script).</p>
+
+<p>In the process, I fried the MCU of my NumWorks for an unknown reason, so be careful and/or prepared to replace it !</p>
+
+<p>An ARM compiler is needed, I&rsquo;m using the binaries provided by ARM <a href="https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads">here</a>, and also the dependencies listed in the <a href="https://www.numworks.com/resources/engineering/software/sdk/">NumWorks SDK documentation</a>.</p>
+
+<h1 id="compiling-giac-the-firmware">Compiling giac &amp; the firmware</h1>
+
+<p>I assume that all the repositories are cloned in the same folder, as there are relative path references between them.</p>
+
+<p>libtommath:</p>
+
+<pre><code>$ git clone https://github.com/zardam/libtommath-0.39
+$ cd libtommath-0.39
+$ make
+</code></pre>
+
+<p>giac:</p>
+
+<pre><code>$ git clone https://github.com/zardam/giac-1.4.9.git
+$ cd giac-1.4.9/src
+$ make -f Makefile.numworks
+</code></pre>
+
+<p>epsilon:</p>
+
+<pre><code>$ git clone -b giac https://github.com/zardam/epsilon.git
+$ cd epsilon
+$ make app.bin app-extflash.bin
+</code></pre>
+
+<h1 id="compiling-qspi-loader-flashrom">Compiling QSPI Loader &amp; flashrom</h1>
+
+<p>Note: flashrom needs to be patched in order to support the Adesto flash chip.</p>
+
+<pre><code>$ git clone https://github.com/zardam/qspi_loader.git
+$ cd qspi_loader
+$ git submodule init
+$ git submodule update
+$ cd libopencm3
+$ make
+$ cd ../flashrom
+$ patch -p1 &lt; ../flashrom_patch/AT25SF641.patch
+$ make CONFIG_ENABLE_LIBPCI_PROGRAMMERS=no CONFIG_ENABLE_LIBUSB0_PROGRAMMERS=no CONFIG_ENABLE_LIBUSB1_PROGRAMMERS=no
+</code></pre>
+
+<h1 id="flashing-the-beast">Flashing the beast</h1>
+
+<p>The first thing is to run QSPI Loader on the calculator. The calculator must be in the bootloader mode (plugged to a USB port then reseted).</p>
+
+<pre><code>$ cd qspi_loader/qspi_loader
+$ make run_qspi_loader
+</code></pre>
+
+<p>There should be a new serial port connected (probably ttyACM0):</p>
+
+<pre><code>$ dmesg
+[195276.110697] usb 1-2: USB disconnect, device number 13
+[195276.417775] usb 1-2: new full-speed USB device number 14 using xhci_hcd
+[195276.567101] usb 1-2: New USB device found, idVendor=0483, idProduct=5740, bcdDevice= 2.00
+[195276.567106] usb 1-2: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[195276.567110] usb 1-2: Product: QSPI serprog
+[195276.567113] usb 1-2: Manufacturer: zardam
+[195276.567115] usb 1-2: SerialNumber: 30333036145136341F802700
+[195276.600532] cdc_acm 1-2:1.0: ttyACM0: USB ACM device
+[195276.601102] usbcore: registered new interface driver cdc_acm
+[195276.601103] cdc_acm: USB Abstract Control Model driver for USB modems and ISDN adapters
+</code></pre>
+
+<p>The Adesto flash chip needs to be put in QSPI mode for proper operation. This is needed only once. I did not know this at first, and I think I killed the MCU of my calculator because the unused data pins are not floating on the Adesto chip when it is not in QSPI mode.</p>
+
+<pre><code>$ cd qspi_loader/tools
+$ ./enable_qspi_AT25SF641.py
+</code></pre>
+
+<p>Then load the external flash using flashrom:</p>
+
+<pre><code>$ cd epsilon
+$ ../qspi_loader/flashrom/flashrom -p serprog:dev=/dev/ttyACM0:115200 -w app-extflash.bin
+</code></pre>
+
+<p>And then, reset the calculator (to go in the MCU bootloader) and flash epsilon:</p>
+
+<pre><code>$ make app_flash
+</code></pre>
+
+<p>Done !</p>
+
+<h1 id="demo">Demo</h1>
+
+<p>Warning, the video was done with the external flash not running at full speed. Actual performance is much better.</p>
+
+<iframe src="https://player.vimeo.com/video/242163942" width="640" height="1019" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+ </div>
+    <footer class="post-footer">
+
+  <div class="post-footer-data">
+    
+<div class="tags">
+    
+      <div class="tag">
+        <a href="https://zardam.github.io/tags/numworks">#NumWorks</a>
+      </div>
+    
+</div>
+
+    <div class="date"> Nov 25, 2018 </div>
+  </div>
+
+</footer>
+
+
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zardam" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</article>
+
+  <footer>
+
+  <div class="social-links-footer">
+
+  
+
+  
+  <a href="https://github.com/zardam" target="_blank"><div class="social-link">GitHub</div></a>
+  
+
+  
+
+  
+  <a href="https://twitter.com/_zardam_" target="_blank"><div class="social-link">Twitter</div></a>
+  
+
+  
+
+  <div class="social-link">
+  <a href="https://zardam.github.io/index.xml" target="_blank">RSS</a>
+  </div>
+
+</div>
+
+
+  <div class="copyright"> Copyright (c) 2018, all rights reserved. </div>
+
+  <div class="poweredby">
+    Powered by <a href="https://gohugo.io/">Hugo</a>.
+  </div>
+
+  </footer>
+
+</div> 
+
+</body>
+</html>
+
