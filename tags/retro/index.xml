@@ -19,8 +19,9 @@
       
       <guid>https://zardam.github.io/post/nofrendo/</guid>
       <description>Demo   UPDATE I have put together an utility to flash a precompiled firmware here : https://zardam.github.io/webnofrendo
-Background This is a port of nofrendo NES Emulator. Some adaptations were borrowed from esp32-nesemu, and some ugly additional work was done to make it run on the calculator.
-The port is very basic, there is no sound (it should be possible to abuse the USB port for this), and the state is not saved (even the SRAM of the cartridge, if any).</description>
+UPDATE 2 I have extracted the sources of the emulator from the epsilon repository : https://github.com/zardam/numworks-nofrendo
+The following build instructions are deprecated.
+Background This is a port of nofrendo NES Emulator. Some adaptations were borrowed from esp32-nesemu, and some ugly additional work was done to make it run on the calculator.</description>
     </item>
     
   </channel>
