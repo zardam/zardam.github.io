@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+<meta charset="utf-8" />
+<meta name="author" content="Zardam" />
+<meta name="description" content="Personal blog." />
+<meta name="keywords" content="blog, tech" />
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.54.0" />
+
+<link rel="canonical" href="https://zardam.github.io/post/ti83-python/">
+<base href="https://zardam.github.io/" />
+<meta property="og:title" content="TI-83 Raspberry PI Python module" />
+<meta property="og:description" content="The TI-83 Python module The module was released as an add-on to the calculator to add a Python interpreter. There was a lot of questions about it, and it was found that it is running a custom CircuitPython
+Dumping the firmware Before discovering the bootloader trick, I dumped pretty easily the firmware, using a BlackMagicProbe and test points TP7 and TP8 on the back of the modules. This correspond to the SWD debug interface (SWDIO on TP7 and SWDCLK on TP8)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zardam.github.io/post/ti83-python/" />
+<meta property="article:published_time" content="2019-04-07T00:00:00&#43;02:00"/>
+<meta property="article:modified_time" content="2019-04-07T00:00:00&#43;02:00"/>
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="TI-83 Raspberry PI Python module"/>
+<meta name="twitter:description" content="The TI-83 Python module The module was released as an add-on to the calculator to add a Python interpreter. There was a lot of questions about it, and it was found that it is running a custom CircuitPython
+Dumping the firmware Before discovering the bootloader trick, I dumped pretty easily the firmware, using a BlackMagicProbe and test points TP7 and TP8 on the back of the modules. This correspond to the SWD debug interface (SWDIO on TP7 and SWDCLK on TP8)."/>
+
+
+
+<meta itemprop="name" content="TI-83 Raspberry PI Python module">
+<meta itemprop="description" content="The TI-83 Python module The module was released as an add-on to the calculator to add a Python interpreter. There was a lot of questions about it, and it was found that it is running a custom CircuitPython
+Dumping the firmware Before discovering the bootloader trick, I dumped pretty easily the firmware, using a BlackMagicProbe and test points TP7 and TP8 on the back of the modules. This correspond to the SWD debug interface (SWDIO on TP7 and SWDCLK on TP8).">
+
+
+<meta itemprop="datePublished" content="2019-04-07T00:00:00&#43;02:00" />
+<meta itemprop="dateModified" content="2019-04-07T00:00:00&#43;02:00" />
+<meta itemprop="wordCount" content="1075">
+
+
+
+<meta itemprop="keywords" content="TI-83,Python,Raspberry Pi," />
+
+
+<link rel="stylesheet" href="css/layout.css" />
+<style type="text/css">
+body {
+  background-color: #101010;
+  color: #dbdbdb;
+}
+
+a { color: #dbdbdb; }
+
+pre {
+  background: #272822;
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+}
+
+code {
+  background: #272822;
+}
+
+blockquote {
+  background: #272822;
+  border-left: 3px solid #dbdbdb;
+}
+
+table {
+  margin: 1em auto;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #dbdbdb;
+}
+
+th {
+  background: #dbdbdb;
+  color: #101010;
+}
+
+.siteTitle a { color: #aaa8a8; }
+
+.post .content h1{ color: #aaa8a8; }
+.post .content h2{ color: #aaa8a8; }
+.post .content h3{ color: #aaa8a8; }
+.post .content h4{ color: #aaa8a8; }
+.post .content h5{ color: #aaa8a8; }
+.post .content h6{ color: #aaa8a8; }
+.post .content a:hover { color: #aaa8a8; }
+.social-link:hover { color: #aaa8a8; }
+.nav-item-title:hover { color: #aaa8a8; }
+.tag a:hover { color: #aaa8a8; }
+.copyright { color: #404040 }
+.poweredby { color: #404040 }
+.poweredby a { color: #404040; }
+.post-preview .title a{ color: #aaa8a8; }
+.content-item a:hover{
+  text-decoration: underline;
+  color: #aaa8a8;
+}
+.post-list .title { color: #aaa8a8; }
+.rmore { color: #aaa8a8; }
+.terms .term a:hover {
+  text-decoration: underline;
+  color: #aaa8a8;
+}
+
+</style>
+
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+
+<title>
+
+
+     TI-83 Raspberry PI Python module 
+
+</title>
+
+</head>
+
+
+<body>
+<div class="main">
+<header>
+
+<div class="header-bar">
+
+  <nav>
+    <div class="siteTitle">
+      <a href="https://zardam.github.io/">Zardam&#39;s home</a>
+    </div> 
+
+    
+    
+    <a class="nav-item" href="https://zardam.github.io/post/"><div class="nav-item-title">Posts</div></a>
+    
+    <a class="nav-item" href="https://zardam.github.io/tags/"><div class="nav-item-title">Tags</div></a>
+    
+
+  </nav>
+</div>
+
+
+</header>
+
+
+<article class="post">
+    <h1 class="title"> TI-83 Raspberry PI Python module </h1>
+    <div class="content"> 
+
+<h1 id="the-ti-83-python-module">The TI-83 Python module</h1>
+
+<p>The module was released as an add-on to the calculator to add a Python interpreter. There was a lot of questions about it, and it was found that it is running a custom <a href="https://github.com/adafruit/circuitpython">CircuitPython</a></p>
+
+<p><img src="https://zardam.github.io/img/ti/Module_TI_Python.jpg" alt="Module_TI_Python" /></p>
+
+<h1 id="dumping-the-firmware">Dumping the firmware</h1>
+
+<p>Before discovering the bootloader trick, I dumped pretty easily the firmware, using a <a href="https://github.com/blacksphere/blackmagic/wiki">BlackMagicProbe</a> and test points TP7 and TP8 on the back of the modules. This correspond to the SWD debug interface (SWDIO on TP7 and SWDCLK on TP8).</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><img src="https://zardam.github.io/img/ti/TI_Python_front.jpg" alt="Module_TI_Python" /></td>
+<td><img src="https://zardam.github.io/img/ti/TI_Python_back.jpg" alt="Module_TI_Python" /></td>
+</tr>
+</tbody>
+</table>
+
+<p>Restoring it on a Arduino Zero Clone worked very well. It was found later that the firmware is also working on <a href="https://learn.adafruit.com/adafruit-trinket-m0-circuitpython-arduino/overview">Adafruit Trinket M0</a> and other SAMD21 boards. See <a href="https://tiplanet.org/forum/viewtopic.php?f=41&amp;t=22454&amp;start=30&amp;hilit=circuitpython">TI-Planet thread</a> for more informations.</p>
+
+<h1 id="the-bootloader">The bootloader</h1>
+
+<p>There is an UF2 bootloader on the module, which seems to be a modified version of <a href="https://github.com/Microsoft/uf2-samdx1">uf2-samdx1</a>. It is identified by the file INFO_UF2.TXT :</p>
+
+<pre><code>UF2 Bootloader v1.0.3U SFRO
+Model: TI-Python Adapter
+Board-ID: TI Python Adapter
+</code></pre>
+
+<p>The USB VID/PID are specific to Texas Instruments. By changing the default ones, the calculator accepts the bootloader, but got stuck trying to update the module in a loop. By using an older version (git tag v1.23.0), the calculator is accepting it and updates the module flawlessly.</p>
+
+<h1 id="replacing-the-original-firmware-by-a-custom-one">Replacing the original firmware by a custom one</h1>
+
+<p>Flashing a stock CircuitPython firmware, even by using TI bootloader was working very well, but it was not detected by the Python application on the calculator. Again, after altering CircuitPython USB VID/PID with the ones from the original firmware was the key, but then the calculator just want to upgrade the module using its own version, so no luck here. There was a lot of concern about the usability of the module (see TI-Planet post), and as I am curious, I wanted to find how the calculator is detecting that the module is not running it&rsquo;s official firmware.</p>
+
+<h2 id="trivial-things">Trivial things</h2>
+
+<p>Matching exactly nearly every &ldquo;public&rdquo; module API was not successful. I tried the USB descriptor, FAT filesystem, CircuitPython output without any luck. I just managed to find that the version number displayed by the calculator was somewhat linked to the identifier of the MSC storage, but I did not manage to duplicate the original.</p>
+
+<p><img src="https://zardam.github.io/img/ti/vinfo.jpg" alt="Version info" /></p>
+
+<h2 id="less-trivial-things">Less trivial things</h2>
+
+<p>I was pretty sure that there was something &ldquo;not public&rdquo; going on, so I ended up using a cheap Chinese logic analyser (a clone of an old <a href="https://www.saleae.com/">Saleae</a> hardware) with <a href="https://sigrok.org/wiki/PulseView">Pulseview of the sigrok project</a>. It very conveniently decodes Full speed USB protocol, but the logic analyser hardware is limited to 24 MHz sample rate (and not very reliability at this frequency), and as the Full speed USB bus is 12 MHz, the capture is &ldquo;at the limit&rdquo;, resulting in some frames not being decoded. It took me a lot of retries to have a good idea of what was happening.</p>
+
+<p>This is the most interesting capture. This is one of the last packet, just before the calculator try to update the module.</p>
+
+<p><img src="https://zardam.github.io/img/ti/pv.png" alt="Pulseview" /></p>
+
+<p>After digging into the useful <a href="https://usb.org/sites/default/files/usbmassbulk_10.pdf">USB MSC specification</a> (which is pretty short), <a href="https://www.seagate.com/files/staticfiles/support/docs/manual/Interface%20manuals/100293068j.pdf">SCSI commands</a>, this proved to be an unknown INQUIRY query, on an not existing LUN. After several tries, it was clear that this query was some sort of validation of the firmware. The payload was different every time, and also the response.</p>
+
+<p>How to replicate this ? After a lot of thinking, I ended up writing a small program on the computer to send such requests to the module, connected under a debugger. After reading CircuitPython code, I was aware that the USB responses are prepared into a buffer, So I made the computer send the request (not reading the response), and dumped the RAM of the CPU.</p>
+
+<p>As for a specific query the response is always the same, I searched for the corresponding bytes in memory and found them !</p>
+
+<p><img src="https://zardam.github.io/img/ti/sram.png" alt="SRAM" /></p>
+
+<p>The rest of the process was figuring how this buffer is filled. I just put a watchpoint using gdb, and by dumping the machine instructions, it was clear that this is just a memcopy from the flash ! So the calculator is asking for a bit of flash to compare it to its own version of the firmware.</p>
+
+<p><img src="https://zardam.github.io/img/ti/gdb2.png" alt="SRAM" /></p>
+
+<p>This is a mixed result. The process is very simple to replicate, but it is needed to have a complete copy of the original firmware&hellip;</p>
+
+<p>After repeating the procedure, I managed to found that the displayed version of the module was important. It is just the same process (INQUIRY on a not existing LUN), with a static response.</p>
+
+<h2 id="putting-it-all-together">Putting it all together</h2>
+
+<p>So now that everything was clear in my mind, I evaluated 3 scenarios :
+ 1. Emulating completely the module on a Raspberry Pi Zero in OTG
+ 2. Using a custom bootloader, jumping into a payload in the FAT space of the original firmware, so the firmware will be here for the validation, but this leaves only 64kB of flash space
+ 3. Adding an SPI flash to the Arduino Zero to store the original firmware, and using a custom CircuitPython on the main flash.</p>
+
+<p>Option 1 and 2 are possible, but for 1. the USB gadget code of the linux kernel is very well written (lot and lot of error checking, &hellip;) so it seemed a little bit hard to tinker with.</p>
+
+<p>I worked for a time on option 2 with some promising results but there is still something missing in my implementation, and I was tired of the difficulty of doing USB capture with my logic analyser, so I gave up for now.</p>
+
+<p>So I ended up on option 3, which was pretty straightforward. The code is a little bit ugly, but it is just for the proof of concept.</p>
+
+<p><img src="img/ti/cp.jpg" alt="CircuiPython modules" /></p>
+
+<p>In the meantime, there was an <a href="https://tiplanet.org/forum/viewtopic.php?p=241097#p241097">april fool on TI-Planet</a> about running a the <a href="https://www-fourier.ujf-grenoble.fr/~parisse/giac_fr.html">giac CAS engine</a> on the module, so why not ?</p>
+
+<p>I ended up converting the custom CircuitPython in merely a USB/serial converter to a Raspberry Pi Zero, which will boot straight into a Python interpreter on its serial port.</p>
+
+<p>Unfortunately, the calculator does not want to supply enough current, so an external battery is needed. The Arduino Zero, is a bit large, but it can be replaced with an <a href="https://www.adafruit.com/product/3403">Adafruit Feather M0 Express</a>, which come with an adequate SPI flash to replicate this build.</p>
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/osq8fKRrslM" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<p>I cheated a little bit in the video, the Raspberry Pi is sshing my desktop computer to run Python as I have some trouble compiling giac for the Raspberry Pi.</p>
+
+<h1 id="references">References</h1>
+
+<ul>
+<li><a href="https://gist.github.com/zardam/52e93baff669eaba0950533ef6923025">Libusb test program</a></li>
+<li><a href="https://github.com/zardam/circuitpython/tree/tipython">Custom CircuitPython</a></li>
+</ul>
+ </div>
+    <footer class="post-footer">
+
+  <div class="post-footer-data">
+    
+<div class="tags">
+    
+      <div class="tag">
+        <a href="https://zardam.github.io/tags/ti-83">#TI-83</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://zardam.github.io/tags/python">#Python</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://zardam.github.io/tags/raspberry-pi">#Raspberry Pi</a>
+      </div>
+    
+</div>
+
+    <div class="date"> Apr 7, 2019 </div>
+  </div>
+
+</footer>
+
+
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zardam" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</article>
+
+  <footer>
+
+  <div class="social-links-footer">
+
+  
+
+  
+  <a href="https://github.com/zardam" target="_blank"><div class="social-link">GitHub</div></a>
+  
+
+  
+
+  
+  <a href="https://twitter.com/_zardam_" target="_blank"><div class="social-link">Twitter</div></a>
+  
+
+  
+
+  <div class="social-link">
+  <a href="https://zardam.github.io/index.xml" target="_blank">RSS</a>
+  </div>
+
+</div>
+
+
+  <div class="copyright"> Copyright (c) 2018, all rights reserved. </div>
+
+  <div class="poweredby">
+    Powered by <a href="https://gohugo.io/">Hugo</a>.
+  </div>
+
+  </footer>
+
+</div> 
+
+</body>
+</html>
+

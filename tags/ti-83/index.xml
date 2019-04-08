@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ti 83 on Zardam&#39;s home</title>
+    <link>https://zardam.github.io/tags/ti-83/</link>
+    <description>Recent content in Ti 83 on Zardam&#39;s home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright (c) 2018, all rights reserved.</copyright>
+    <lastBuildDate>Sun, 07 Apr 2019 00:00:00 +0200</lastBuildDate>
+    
+	<atom:link href="https://zardam.github.io/tags/ti-83/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>TI-83 Raspberry PI Python module</title>
+      <link>https://zardam.github.io/post/ti83-python/</link>
+      <pubDate>Sun, 07 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://zardam.github.io/post/ti83-python/</guid>
+      <description>The TI-83 Python module The module was released as an add-on to the calculator to add a Python interpreter. There was a lot of questions about it, and it was found that it is running a custom CircuitPython
+Dumping the firmware Before discovering the bootloader trick, I dumped pretty easily the firmware, using a BlackMagicProbe and test points TP7 and TP8 on the back of the modules. This correspond to the SWD debug interface (SWDIO on TP7 and SWDCLK on TP8).</description>
+    </item>
+    
+  </channel>
+</rss>
