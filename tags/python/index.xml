@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2018, all rights reserved.</copyright>
-    <lastBuildDate>Sun, 07 Apr 2019 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 24 May 2019 23:30:00 +0200</lastBuildDate>
     
 	<atom:link href="https://zardam.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>TI-83 ESP8266 Python module</title>
+      <link>https://zardam.github.io/post/ti83-python-2/</link>
+      <pubDate>Fri, 24 May 2019 23:30:00 +0200</pubDate>
+      
+      <guid>https://zardam.github.io/post/ti83-python-2/</guid>
+      <description>With the help of a custom firmware, the Python module is converted into an USB to serial bridge, connected to an ESP8266 module that was added inside the case.
+The ESP8266 is running a stock MicroPython. The video is showing some interactions with the ESP8266 over WiFi with MicroPython WebREPL, while the module is connected to the calculator.
+Everything typed on the WebREPL could have been entered directly on the calculator, but typing on a real keyboard if far more easy (at least for me) !</description>
+    </item>
     
     <item>
       <title>TI-83 Raspberry PI Python module</title>
