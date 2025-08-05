@@ -260,21 +260,21 @@ NVIC.NVIC_ISER0()-&gt;set(23, true);
 <ul>
 <li><p>when CS goes low, it activates the software chip select of the SPI controller, and then it triggers the configuration of the window in the display controller.</p></li>
 
-<li><p>when CS goes high, it disactivates the software chip select of the SPI controller. Any data received on the SPI will be discarded.</p>
+<li><p>when CS goes high, it disactivates the software chip select of the SPI controller. Any data received on the SPI will be discarded.</p></li>
+</ul>
 
 <pre><code>void rpi_isr() {
-EXTI.PR()-&gt;set(Ion::Rpi::Device::ChipSelectPin, true);
+  EXTI.PR()-&gt;set(Ion::Rpi::Device::ChipSelectPin, true);
 
-if(GPIOA.IDR()-&gt;get(6)) {
-SPI1.CR1()-&gt;setSSI(true);
-} else {
-Ion::Display::Device::setDrawingArea(KDRect(0,0,320,240), Ion::Display::Device::Orientation::Landscape);
-*Ion::Display::Device::CommandAddress = Ion::Display::Device::Command::MemoryWrite;
-SPI1.CR1()-&gt;setSSI(false);
+  if(GPIOA.IDR()-&gt;get(6)) {
+    SPI1.CR1()-&gt;setSSI(true);
+  } else {
+    Ion::Display::Device::setDrawingArea(KDRect(0,0,320,240), Ion::Display::Device::Orientation::Landscape);
+    *Ion::Display::Device::CommandAddress = Ion::Display::Device::Command::MemoryWrite;
+    SPI1.CR1()-&gt;setSSI(false);
+  }
 }
-}
-</code></pre></li>
-</ul>
+</code></pre>
 
 <h2 id="limitations">Limitations</h2>
 
@@ -672,7 +672,7 @@ but it was a very interesting project.</p>
 </div>
 
 
-  <div class="copyright"> Copyright (c) 2018, all rights reserved. </div>
+  <div class="copyright"> Copyright (c) 2025, all rights reserved. </div>
 
   <div class="poweredby">
     Powered by <a href="https://gohugo.io/">Hugo</a>.

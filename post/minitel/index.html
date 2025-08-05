@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+<meta charset="utf-8" />
+<meta name="author" content="Zardam" />
+<meta name="description" content="Personal blog." />
+<meta name="keywords" content="blog, tech" />
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.54.0" />
+
+<link rel="canonical" href="https://zardam.github.io/post/minitel/">
+<base href="https://zardam.github.io/" />
+<meta property="og:title" content="Bad Apple on a Minitel" />
+<meta property="og:description" content="Why I really enjoyed the work of HxC2001, and I&rsquo;ve always wanted do do something like this with a Minitel.
+How The first thing to do was to buy a Minitel. I bought the same model I had at home for close to nothing:
+It&rsquo;s an Alcatel branded one, and it is actually quite different from the Philips of HxC2001. Hopefully, there is a lot of information about it here, including a detailed technical description and schematics." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zardam.github.io/post/minitel/" />
+<meta property="article:published_time" content="2025-07-26T00:00:00&#43;02:00"/>
+<meta property="article:modified_time" content="2025-07-26T00:00:00&#43;02:00"/>
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Bad Apple on a Minitel"/>
+<meta name="twitter:description" content="Why I really enjoyed the work of HxC2001, and I&rsquo;ve always wanted do do something like this with a Minitel.
+How The first thing to do was to buy a Minitel. I bought the same model I had at home for close to nothing:
+It&rsquo;s an Alcatel branded one, and it is actually quite different from the Philips of HxC2001. Hopefully, there is a lot of information about it here, including a detailed technical description and schematics."/>
+
+
+
+<meta itemprop="name" content="Bad Apple on a Minitel">
+<meta itemprop="description" content="Why I really enjoyed the work of HxC2001, and I&rsquo;ve always wanted do do something like this with a Minitel.
+How The first thing to do was to buy a Minitel. I bought the same model I had at home for close to nothing:
+It&rsquo;s an Alcatel branded one, and it is actually quite different from the Philips of HxC2001. Hopefully, there is a lot of information about it here, including a detailed technical description and schematics.">
+
+
+<meta itemprop="datePublished" content="2025-07-26T00:00:00&#43;02:00" />
+<meta itemprop="dateModified" content="2025-07-26T00:00:00&#43;02:00" />
+<meta itemprop="wordCount" content="697">
+
+
+
+<meta itemprop="keywords" content="RP2040,Python,minitel," />
+
+
+<link rel="stylesheet" href="css/layout.css" />
+<style type="text/css">
+body {
+  background-color: #101010;
+  color: #dbdbdb;
+}
+
+a { color: #dbdbdb; }
+
+pre {
+  background: #272822;
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+}
+
+code {
+  background: #272822;
+}
+
+blockquote {
+  background: #272822;
+  border-left: 3px solid #dbdbdb;
+}
+
+table {
+  margin: 1em auto;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #dbdbdb;
+}
+
+th {
+  background: #dbdbdb;
+  color: #101010;
+}
+
+.siteTitle a { color: #aaa8a8; }
+
+.post .content h1{ color: #aaa8a8; }
+.post .content h2{ color: #aaa8a8; }
+.post .content h3{ color: #aaa8a8; }
+.post .content h4{ color: #aaa8a8; }
+.post .content h5{ color: #aaa8a8; }
+.post .content h6{ color: #aaa8a8; }
+.post .content a:hover { color: #aaa8a8; }
+.social-link:hover { color: #aaa8a8; }
+.nav-item-title:hover { color: #aaa8a8; }
+.tag a:hover { color: #aaa8a8; }
+.copyright { color: #404040 }
+.poweredby { color: #404040 }
+.poweredby a { color: #404040; }
+.post-preview .title a{ color: #aaa8a8; }
+.content-item a:hover{
+  text-decoration: underline;
+  color: #aaa8a8;
+}
+.post-list .title { color: #aaa8a8; }
+.rmore { color: #aaa8a8; }
+.terms .term a:hover {
+  text-decoration: underline;
+  color: #aaa8a8;
+}
+
+</style>
+
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+
+<title>
+
+
+     Bad Apple on a Minitel 
+
+</title>
+
+</head>
+
+
+<body>
+<div class="main">
+<header>
+
+<div class="header-bar">
+
+  <nav>
+    <div class="siteTitle">
+      <a href="https://zardam.github.io/">Zardam&#39;s home</a>
+    </div> 
+
+    
+    
+    <a class="nav-item" href="https://zardam.github.io/post/"><div class="nav-item-title">Posts</div></a>
+    
+    <a class="nav-item" href="https://zardam.github.io/tags/"><div class="nav-item-title">Tags</div></a>
+    
+
+  </nav>
+</div>
+
+
+</header>
+
+
+<article class="post">
+    <h1 class="title"> Bad Apple on a Minitel </h1>
+    <div class="content"> 
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/Tj0nC7f5XRY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<h1 id="why">Why</h1>
+
+<p>I really enjoyed the work of <a href="http://hxc2001.free.fr/minitel/">HxC2001</a>, and I&rsquo;ve always wanted do do something like this with a Minitel.</p>
+
+<h1 id="how">How</h1>
+
+<p>The first thing to do was to buy a Minitel. I bought the same model I had at home for close to nothing:</p>
+
+<p>It&rsquo;s an Alcatel branded one, and it is actually quite different from the Philips of HxC2001. Hopefully, there is a lot of information about it <a href="https://www.minitel-alcatel.fr/">here</a>, including <a href="https://www.minitel-alcatel.fr/documents/M2_1988/M2%20description%20technique.pdf">a detailed technical description and schematics</a>.</p>
+
+<p>The next question was how to run some code on it. I stumbled upon <a href="https://github.com/wickerwaka/PicoROM">PicoROM</a> (a ROM emulator based on the RP2040) some time ago, and I thought it may be a perfect fit for my need. As the <a href="https://hackaday.com/2022/09/25/pi-pico-w-does-pcmcia-gets-this-ibm-pc110-online/#comment-6516402">RP2040 is (unoficially) 5v tolerant</a>, I simply used a Raspberry Pi Pico connected to the expansion port of the Minitel, with <a href="https://github.com/zardam/minitel">some adaptation of the PicoROM firmware</a> to handle the multiplexed bus of the 8051 MCU.</p>
+
+<p><img src="https://zardam.github.io/img/minitel/picorom.jpg" alt="PicoROM" /></p>
+
+<table>
+<thead>
+<tr>
+<th>Minitel</th>
+<th>RP2040</th>
+<th>Function</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>Vin</td>
+<td>+5v</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>GPIO0</td>
+<td>AD0</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>GPIO1</td>
+<td>AD1</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>GPIO2</td>
+<td>AD2</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>GPIO3</td>
+<td>AD3</td>
+</tr>
+
+<tr>
+<td>6</td>
+<td>GPIO4</td>
+<td>AD4</td>
+</tr>
+
+<tr>
+<td>7</td>
+<td>GPIO5</td>
+<td>AD5</td>
+</tr>
+
+<tr>
+<td>8</td>
+<td>GPIO6</td>
+<td>AD6</td>
+</tr>
+
+<tr>
+<td>9</td>
+<td>GPIO7</td>
+<td>AD7</td>
+</tr>
+
+<tr>
+<td>10</td>
+<td>GND</td>
+<td>EA</td>
+</tr>
+
+<tr>
+<td>11</td>
+<td>GPIO16</td>
+<td>ALE</td>
+</tr>
+
+<tr>
+<td>12</td>
+<td>GPIO17</td>
+<td>PSEN</td>
+</tr>
+
+<tr>
+<td>13</td>
+<td>GPIO15</td>
+<td>A15</td>
+</tr>
+
+<tr>
+<td>14</td>
+<td>GPIO14</td>
+<td>A14</td>
+</tr>
+
+<tr>
+<td>15</td>
+<td>GPIO13</td>
+<td>A13</td>
+</tr>
+
+<tr>
+<td>16</td>
+<td>GPIO12</td>
+<td>A12</td>
+</tr>
+
+<tr>
+<td>17</td>
+<td>GPIO11</td>
+<td>A11</td>
+</tr>
+
+<tr>
+<td>18</td>
+<td>GPIO10</td>
+<td>A10</td>
+</tr>
+
+<tr>
+<td>19</td>
+<td>GPIO9</td>
+<td>A9</td>
+</tr>
+
+<tr>
+<td>20</td>
+<td>GPIO8</td>
+<td>A8</td>
+</tr>
+
+<tr>
+<td>32</td>
+<td>GND</td>
+<td>GND</td>
+</tr>
+</tbody>
+</table>
+
+<p>The bodge wire is the reset signal, and some bridges needs to be cut to disconnect the keyboard, as described in the technical description.</p>
+
+<p>After studying a little bit the <a href="https://zigazou.dev/minitel/hardware/st-microelectronics-ts9347-1993-09.pdf">TS9347</a> &ldquo;semi-graphic display processor&rdquo;, I through it was a perfect fit for Bad Apple: lots of infills, with only the outline of the characters that are really graphics, that can be rendered using the custom characters available with the TS9347.</p>
+
+<p>Using ffmpeg, ImageMagick, and a Python script, I quickly extracted the black or white only zones, and a list of custom characters per frame. Some frames require more than 300 characters. That may fit in the available memory, but to achieve a decent framerate without flickering, double buffering is needed leaving only 192 custom characters available per frame. Some frames will be miss details, but not too much, thanks to the semi-graphic ROM characters present.</p>
+
+<p><img src="https://zardam.github.io/img/minitel/overflow.jpg" alt="Overflow of custom characters" /></p>
+
+<p>After some tries, I ended on using an unrolled assembly code to copy the frame in the video memory. This way, I managed to have a 30 Hz refresh rate but each frame takes about 20 kB of ROM space, so how to fit the required 6573 frames of the original video?</p>
+
+<p>Then came the last part of the equation: I have a programmable ROM emulator, so I could just implement some bank switching with it. I actually cheated a bit as I&rsquo;m just patching the ROM image in the RP2040 RAM directly. At about 4 kB of data per frame, some compression with LZ4 was used to fit the entire 6573 frames in the maximum 16 MB of flash available on some RP2040 boards. To make the story short, parsing the assembly listing generated by the compiler proved to be very useful to get the offsets to patch in the ROM. The bank switch occurs when reading at specific addresses in the emulated ROM. So when page 0 is displayed, page 1 gets loaded in the video memory, and page 0 in the ROM is updated with the next frame.</p>
+
+<p>Along this, Bad Apple without audio is a bit tasteless, so I decided to cheat a little bit and added a 4 bit DAC in place of some control lines of the modem (after all, cuttable bridges were here for expansion according to the technical description), and connected the output to the built-in audio amplifier:</p>
+
+<p><img src="https://zardam.github.io/img/minitel/dac.jpg" alt="DAC" /></p>
+
+<p>Audio was downsampled to 7680Hz (leading to 256 samples per frames), also served with the bank switching trick.</p>
+
+<h1 id="afterthought">Afterthought</h1>
+
+<p>This model of Minitel is a bit of a hack: for example, an address line of the video processor is used to control the power/standby LED.</p>
+
+<p>The design is very neat: no screws, the PCBs are cleverly interlocked together, and a lot of room for expansion was provided.</p>
+
+<p>The PicoROM is awesome, enabling super easy test iteration on the real hardware.</p>
+
+<h1 id="some-useful-links">Some useful links</h1>
+
+<ul>
+<li><a href="http://hxc2001.free.fr/minitel/">http://hxc2001.free.fr/minitel/</a></li>
+<li><a href="https://zigazou.dev/minitel">https://zigazou.dev/minitel</a></li>
+<li><a href="https://mieboc.codeberg.page/elec/minitel/fr.html">https://mieboc.codeberg.page/elec/minitel/fr.html</a></li>
+<li><a href="https://www.minitel-alcatel.fr">https://www.minitel-alcatel.fr</a></li>
+<li><a href="https://github.com/wickerwaka/PicoROM">https://github.com/wickerwaka/PicoROM</a></li>
+</ul>
+ </div>
+    <footer class="post-footer">
+
+  <div class="post-footer-data">
+    
+<div class="tags">
+    
+      <div class="tag">
+        <a href="https://zardam.github.io/tags/rp2040">#RP2040</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://zardam.github.io/tags/python">#Python</a>
+      </div>
+    
+      <div class="tag">
+        <a href="https://zardam.github.io/tags/minitel">#minitel</a>
+      </div>
+    
+</div>
+
+    <div class="date"> Jul 26, 2025 </div>
+  </div>
+
+</footer>
+
+
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zardam" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</article>
+
+  <footer>
+
+  <div class="social-links-footer">
+
+  
+
+  
+  <a href="https://github.com/zardam" target="_blank"><div class="social-link">GitHub</div></a>
+  
+
+  
+
+  
+  <a href="https://twitter.com/_zardam_" target="_blank"><div class="social-link">Twitter</div></a>
+  
+
+  
+
+  <div class="social-link">
+  <a href="https://zardam.github.io/index.xml" target="_blank">RSS</a>
+  </div>
+
+</div>
+
+
+  <div class="copyright"> Copyright (c) 2025, all rights reserved. </div>
+
+  <div class="poweredby">
+    Powered by <a href="https://gohugo.io/">Hugo</a>.
+  </div>
+
+  </footer>
+
+</div> 
+
+</body>
+</html>
+

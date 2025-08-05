@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rp2040 on Zardam&#39;s home</title>
+    <link>https://zardam.github.io/tags/rp2040/</link>
+    <description>Recent content in Rp2040 on Zardam&#39;s home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright (c) 2025, all rights reserved.</copyright>
+    <lastBuildDate>Sat, 26 Jul 2025 00:00:00 +0200</lastBuildDate>
+    
+	<atom:link href="https://zardam.github.io/tags/rp2040/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Bad Apple on a Minitel</title>
+      <link>https://zardam.github.io/post/minitel/</link>
+      <pubDate>Sat, 26 Jul 2025 00:00:00 +0200</pubDate>
+      
+      <guid>https://zardam.github.io/post/minitel/</guid>
+      <description>Why I really enjoyed the work of HxC2001, and I&amp;rsquo;ve always wanted do do something like this with a Minitel.
+How The first thing to do was to buy a Minitel. I bought the same model I had at home for close to nothing:
+It&amp;rsquo;s an Alcatel branded one, and it is actually quite different from the Philips of HxC2001. Hopefully, there is a lot of information about it here, including a detailed technical description and schematics.</description>
+    </item>
+    
+  </channel>
+</rss>
